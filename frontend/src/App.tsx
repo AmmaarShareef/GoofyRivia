@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { getRoomCode } from "./utils/api";
+import { getRoomCode, getPlayers } from "./utils/api";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 
 function App() {
   const [code, setCode] = useState("");
+  const [players, setPlayer] = useState<string[]>([]);
 
   return (
     <>
@@ -24,9 +25,10 @@ function App() {
         </button>
         <p>The Room code is {code}</p>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <button onClick={async () => setPlayer(await getPlayers())}>
+        Refresh
+      </button>
+      <p className="players"> Players: {players.join(", ")} </p>
     </>
   );
 }
