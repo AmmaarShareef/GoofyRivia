@@ -1,21 +1,21 @@
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 3rem;
   text-align: center;
 }
 
 .logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 19em;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+
+.refresh {
+  position: static;  /* or just remove this rule entirely */
+  margin-bottom: 10px; /* optional spacing from circles above */
 }
 
 @keyframes logo-spin {
@@ -33,10 +33,43 @@
   }
 }
 
-.card {
-  padding: 2em;
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* start from top */
+  min-height: calc(100vh - 19em); /* push content up so logo has space */
 }
 
+
+/* Players text */
 .players {
   color: #888;
+  margin-bottom: 30px; /* spacing to circles */
+}
+
+/* Container for the circles */
+.circles-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 300px;
+  margin: 0 auto; /* removed margin-bottom */
+  gap: 10px;
+}
+
+/* Individual circle */
+.circles-container div {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #646cff;
+}
+
+/* Card with buttons */
+.card {
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* space between buttons/text */
 }

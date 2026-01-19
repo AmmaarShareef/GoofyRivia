@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { getRoomCode, getPlayers } from "./utils/api";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+import Logo from "./assets/GoofyRivia.png";
 import "./App.css";
 
 function App() {
@@ -10,25 +9,32 @@ function App() {
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className="main">
+        <div>
+          <button
+            className="refresh"
+            onClick={async () => setPlayer(await getPlayers())}
+          >
+            Refresh
+          </button>
+          <p className="players"> Players: {players.join(", ")} </p>
+          <div className="circles-container">
+            {Array.from({ length: 8 }).map((_, i) => (
+              <div key={i}></div>
+            ))}
+          </div>
+        </div>
+        <div className="card">
+          <button
+            className="generate"
+            onClick={async () => setCode(await getRoomCode())}
+          >
+            Generate Room Code
+          </button>
+          <p>The Room code is {code}</p>
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={async () => setCode(await getRoomCode())}>
-          Generate Room Code
-        </button>
-        <p>The Room code is {code}</p>
-      </div>
-      <button onClick={async () => setPlayer(await getPlayers())}>
-        Refresh
-      </button>
-      <p className="players"> Players: {players.join(", ")} </p>
+      <img src={Logo} className="logo" />
     </>
   );
 }
