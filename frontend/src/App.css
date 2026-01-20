@@ -1,36 +1,18 @@
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 3rem;
+  padding: 1rem;
   text-align: center;
 }
 
 .logo {
-  position: fixed;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  height: 19em;
+  font-family: "Jolly Lodger", system-ui;
+  font-size: 100px;
 }
 
 .refresh {
   position: static;  /* or just remove this rule entirely */
-  margin-bottom: 10px; /* optional spacing from circles above */
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+  margin-bottom: 1px; /* optional spacing from circles above */
 }
 
 .main {
@@ -45,7 +27,7 @@
 /* Players text */
 .players {
   color: #888;
-  margin-bottom: 30px; /* spacing to circles */
+  margin-bottom: 20px; /* spacing to circles */
 }
 
 /* Container for the circles */
@@ -53,17 +35,17 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  max-width: 300px;
+  max-width: 450px;
   margin: 0 auto; /* removed margin-bottom */
   gap: 10px;
 }
 
 /* Individual circle */
 .circles-container div {
-  width: 50px;
-  height: 50px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
-  background-color: #646cff;
+  background-color: #ffffff;
 }
 
 /* Card with buttons */
@@ -71,5 +53,10 @@
   padding: 2em;
   display: flex;
   flex-direction: column;
-  gap: 10px; /* space between buttons/text */
+  gap: 0px; /* space between buttons/text */
+}
+
+.code {
+  font-size: 30px;
+  font-family: "Jolly Lodger", system-ui;
 }

@@ -1,14 +1,27 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { getRoomCode, getPlayers } from "./utils/api";
-import Logo from "./assets/GoofyRivia.png";
 import "./App.css";
+import { io } from "socket.io-client";
 
 function App() {
-  const [code, setCode] = useState("");
+  const [code, setCode] = useState("0000"); // Change so that it tries to get the current code from backend, if not stick to 0000
   const [players, setPlayer] = useState<string[]>([]);
+
+  useEffect(() => {
+    const socket = io("http://172.17.98.186:3001");
+
+    socket.on("player-joined", (data) => {
+      console.log("New player joined:", data.userName);
+    });
+
+    return () => {
+      socket.disconnect();
+    };
+  }, []);
 
   return (
     <>
+      <h1 className="logo"> GoofyRivia </h1>
       <div className="main">
         <div>
           <button
@@ -31,10 +44,10 @@ function App() {
           >
             Generate Room Code
           </button>
-          <p>The Room code is {code}</p>
+          <p>The Room code is:</p>
+          <p className="code">{code}</p>
         </div>
       </div>
-      <img src={Logo} className="logo" />
     </>
   );
 }
