@@ -4,6 +4,10 @@ import { createServer } from "http";
 import { Server } from "socket.io";
 import cors from "cors";
 import { createCode } from "./game/lobby";
+import { generateQ } from "./game/questions";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const app = express();
 app.use(cors());
@@ -20,6 +24,7 @@ let players: Array<string> = []
 
 io.on("connection", (socket) => {
   console.log("Client connected:", socket.id);
+  socket.emit("player-joined", { userName: "TEST_USER" });
 });
 
 app.get("/room-code", (req: Request, res: Response) => {
@@ -52,7 +57,17 @@ app.get("/lobby", (req: Request, res: Response) => {
     res.send(players)
 })
 
-//10.0.0.212
+app.post("/question", async (req, res) => {
+  const { topic } = req.body; // topic from frontend
+  const question = await generateQ(topic || "General trivia");
+  
+  // Emit to all connected players
+  io.emit("new-question", { question });
+
+  res.send({ success: true, question });
+});
+
+//10.0.0.212WhenHome
 httpServer.listen(3001, "0.0.0.0", () => {
     console.log("Backend listening with Websocket on all network interfaces")
 })

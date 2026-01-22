@@ -20,7 +20,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start; /* start from top */
-  min-height: calc(100vh - 19em); /* push content up so logo has space */
+  min-height: calc(1000vh - 19em); /* push content up so logo has space */
 }
 
 
