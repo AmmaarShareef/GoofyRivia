@@ -28,39 +28,41 @@ function App() {
 
   return (
     <>
-      <h1 className="logo"> GoofyRivia </h1>
-      <div className="main">
-        <div>
-          <button
-            className="refresh"
-            onClick={async () => setPlayer(await getPlayers())}
-          >
-            Refresh
-          </button>
-          <p className="players"> Players: {players.join(", ")} </p>
-          <div className="circles-container">
-            {Array.from({ length: 8 }).map((_, i) => (
-              <div key={i}></div>
-            ))}
+      <div className="full">
+        <h1 className="logo"> GoofyRivia </h1>
+        <div className="main">
+          <div>
+            <button
+              className="refresh"
+              onClick={async () => setPlayer(await getPlayers())}
+            >
+              Refresh
+            </button>
+            <p className="players"> Players: {players.join(", ")} </p>
+            <div className="circles-container">
+              {Array.from({ length: 8 }).map((_, i) => (
+                <div key={i}></div>
+              ))}
+            </div>
           </div>
-        </div>
-        <div className="card">
-          <button
-            className="generate"
-            onClick={async () => setCode(await getRoomCode())}
-          >
-            Generate Room Code
-          </button>
-          <p>The Room code is:</p>
-          <p className="code">{code}</p>
-          <button
+          <div className="card">
+            <button
+              className="generate"
+              onClick={async () => setCode(await getRoomCode())}
+            >
+              Generate Room Code
+            </button>
+            <p>The Room code is:</p>
+            <p className="code">{code}</p>
+            {/*<button
             className="start"
             onClick={async () => setQ(await getQuestion(prompt))}
           >
             Ask Question!
-          </button>
+          </button> */}
+          </div>
+          <p>{question}</p>
         </div>
-        <p>{question}</p>
       </div>
     </>
   );
